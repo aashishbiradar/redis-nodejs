@@ -22,5 +22,8 @@
     "ejs": "^2.4.2",
     "morgan": "*",
     "redis": "*"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
   }
 }
