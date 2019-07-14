@@ -6,6 +6,11 @@ const redis         = require('redis');
 
 var app = express();
 
+var rdsClient = redis.createClient();
+rdsClient.on('connect',() => {
+    console.log('redis server connected');
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -16,7 +21,10 @@ app.use(bodyParser.urlencoded({ extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/',(req,res) => {
-    res.send('welcome!')
+    var data = {
+        title : "Task List"
+    };
+    res.render('index',data)
 });
 
 app.listen(3000);
