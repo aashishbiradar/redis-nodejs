@@ -1,4 +1,7 @@
 
+# vscode
+.vscode/
+
 # Created by https://www.gitignore.io/api/node,redis
 # Edit at https://www.gitignore.io/?templates=node,redis
 

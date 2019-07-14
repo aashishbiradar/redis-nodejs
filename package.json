@@ -1,0 +1,19 @@
+{
+  "name": "redis-nodejs",
+  "version": "1.0.0",
+  "description": "Redis and Node.js - Task List Project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aashishbiradar/redis-nodejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aashishbiradar/redis-nodejs/issues"
+  },
+  "homepage": "https://github.com/aashishbiradar/redis-nodejs#readme"
+}
