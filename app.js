@@ -21,10 +21,14 @@ app.use(bodyParser.urlencoded({ extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/',(req,res) => {
-    var data = {
-        title : "Task List"
-    };
-    res.render('index',data)
+    
+    rdsClient.lrange('tasks',0,-1,(err,reply) => {
+        var data = {
+            title : "Task List",
+            tasks : reply
+        };
+        res.render('index',data);
+    });
 });
 
 app.listen(3000);
