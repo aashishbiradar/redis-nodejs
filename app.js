@@ -31,6 +31,22 @@ app.get('/',(req,res) => {
     });
 });
 
+app.post('/task/add',(req,res) => {
+    var task = req.body.task;
+    rdsClient.rpush('tasks', task, (err,reply) => {
+        if(err) {
+            res.send({
+                result:"error",
+                errorMsg: "Not able to add task"
+            });
+            return;
+        }
+        res.send({
+            result: "succcess"
+        });
+    });
+});
+
 app.listen(3000);
 console.log('server started on port 3000');
 

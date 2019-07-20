@@ -1,6 +1,29 @@
-<%= title %>
-<ul>
-    <% tasks.forEach((task) => { %>
-        <li><%= task %></li>
-    <% }); %>
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script defer src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script defer src="/scripts/main.js"></script>
+    <link rel="stylesheet" href="/styles/main.css">
+    <title>Task List</title>
+</head>
+<body>
+    <form>
+        <span>Add Task: </span>
+        <input id="task-input" type="text" name="task">
+        <input id="task-submit" type="submit" value="Add">
+    </form>
+    <%= title %>
+    <form>
+        <ul class="task-list">
+            <% tasks.forEach((task) => { %>
+                <li><input type="checkbox" value="<%= task%>" ><span><%= task %></span></li>
+            <% }); %>
+            <input type="text">
+        </ul>
+        <button id="remove-tasks">Remove</button>
+    </form>
+</body>
+</html>
