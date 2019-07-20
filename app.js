@@ -42,7 +42,22 @@ app.post('/task/add',(req,res) => {
             return;
         }
         res.send({
-            result: "succcess"
+            result: "success"
+        });
+    });
+});
+
+app.post('/task/remove',(req,res) => {
+    var tasksToRM = JSON.parse(req.body.tasks);
+    rdsClient.lrange('tasks',0,-1,(err,tasks) => {
+        tasksToRM.forEach(element => {
+           if(tasks.indexOf(element) > -1) {
+               rdsClient.lrem('tasks',0,element, err => {
+                    if(err){
+                        console.log(err);
+                    }
+               })
+           } 
         });
     });
 });

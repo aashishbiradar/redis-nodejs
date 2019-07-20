@@ -2,11 +2,11 @@ $(document).ready(function(){
     $('#task-submit').off().on('click',function(e){
         e.preventDefault();
         var task = $('#task-input').val().trim();
-        if(task == '')
+        if(!task)
         {
             return alert('Enter task');
         }
-        Task.getObj().add(task);
+        TaskManager.getObj().add(task);
     });
     $('#remove-tasks').off().on('click',function(e){
         e.preventDefault();
@@ -14,24 +14,27 @@ $(document).ready(function(){
         $('.task-list input:checked').toArray().forEach(function(v){
             tasks.push($(v).val());
         });
-        console.log(tasks);
+        if(tasks.length > 0 )
+        {
+            TaskManager.getObj().remove(tasks);
+        }
     });
 });
 
-function Task(){
+function TaskManager(){
 
 }
-Task.getObj = (function () {
+TaskManager.getObj = (function () {
     var singleObj = undefined;
     return function () {
         if(!singleObj) {
-            singleObj = new Task();
+            singleObj = new TaskManager();
         }
         return singleObj;
     }
 })();
 
-Task.prototype.add = function (task) {
+TaskManager.prototype.add = function (task) {
    $.ajax({
        data: {
            task : task
@@ -43,3 +46,15 @@ Task.prototype.add = function (task) {
        url: '/task/add'
    });
 }
+TaskManager.prototype.remove = function (tasks) {
+    $.ajax({
+        data: {
+            tasks : JSON.stringify(tasks),
+        },
+        complete : function(reply){
+            location.reload();
+        },
+        type: 'post',
+        url: '/task/remove'
+    });
+ }

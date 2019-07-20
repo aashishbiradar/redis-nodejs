@@ -15,13 +15,12 @@
         <input id="task-input" type="text" name="task">
         <input id="task-submit" type="submit" value="Add">
     </form>
-    <%= title %>
+    <h2><%= title %></h2>
     <form>
         <ul class="task-list">
             <% tasks.forEach((task) => { %>
                 <li><input type="checkbox" value="<%= task%>" ><span><%= task %></span></li>
             <% }); %>
-            <input type="text">
         </ul>
         <button id="remove-tasks">Remove</button>
     </form>
